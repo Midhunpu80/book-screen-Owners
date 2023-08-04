@@ -1,11 +1,18 @@
-// ignore_for_file: prefer_const_constructors, camel_case_types
+// ign;ore_for_file: prefer_const_constructors, camel_case_types
+
+// ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:owner/service/getcurrentscreens/screen_service.dart';
 import 'package:owner/utils/alltext/alltext.dart';
 import 'package:owner/utils/colors/colors.dart';
+import 'package:owner/view/screens/screenManagement/widgets/addscreen.dart';
 import 'package:owner/view/screens/screenManagement/widgets/head.dart';
 import 'package:owner/view/screens/screenManagement/widgets/list.dart';
 import 'package:sizer/sizer.dart';
+
+final scdata = Get.put(get_current_screens());
 
 // ignore: use_key_in_widget_constructors
 class screenMangement extends StatelessWidget {
@@ -15,7 +22,9 @@ class screenMangement extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: gr,
         onPressed: () {
-          // ignore: avoid_print
+          scdata.getscreens(id: ownerl.reply.data.id.toString());
+          Get.to(() => addscreen());
+          print(ownerl.reply.data.id);
           print("taped");
         },
         child: Icon(
@@ -35,12 +44,19 @@ class screenMangement extends StatelessWidget {
         backgroundColor: re,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          // ignore: prefer_const_literals_to_create_immutables
-          children: [
-            head(),
-            listofscreen(),
-          ],
+        child: Obx(
+          () => scdata.isLoading.value
+              ? Padding(
+                  padding: EdgeInsets.only(top: 40.h),
+                  child: const Center(child: CircularProgressIndicator()),
+                )
+              : Column(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    head(),
+                    listofscreen(),
+                  ],
+                ),
         ),
       ),
     );

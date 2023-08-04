@@ -6,7 +6,7 @@ import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:owner/service/owners/authentication/register.dart';
-import 'package:owner/view/screens/screenManagement/screenmanagement.dart';
+import 'package:owner/view/screens/Authentication/Login/Login.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: Scaffold(
-          body: screenMangement(),
+          body: login(),
         ),
         initialBinding: BindingsBuilder(() => Get.put(registerService())),
       );

@@ -39,12 +39,8 @@ Widget head() {
               siz: 10.sp,
               wei: FontWeight.bold,
               max: 1),
-                alltext2(
-              txt: "Action",
-              col: wh,
-              siz: 10.sp,
-              wei: FontWeight.bold,
-              max: 1),
+          alltext2(
+              txt: "Action", col: wh, siz: 10.sp, wei: FontWeight.bold, max: 1),
         ],
       ),
     ),
