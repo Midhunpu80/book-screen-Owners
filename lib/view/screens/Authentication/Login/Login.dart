@@ -81,7 +81,7 @@ class login extends StatelessWidget {
                   ),
                   ////<-------Login Button--------->///
 
-                  newlogbutton(),
+                  newlogbutton(context: context),
                 ],
               ),
             ),

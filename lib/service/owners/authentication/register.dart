@@ -58,7 +58,7 @@ class registerService extends GetxController {
           encoding: Encoding.getByName('utf-8'));
 
       if (response.statusCode == 200) {
-        var reply = jsonDecode(response.body);
+        var reply = jsonDecode(response.body.toString());
         update();
 
         // ignore: avoid_print

@@ -1,17 +1,33 @@
-// ignore_for_file: void_checks
+// ignore_for_file: void_checks, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/bindings_interface.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:owner/service/owners/authentication/register.dart';
-import 'package:owner/view/screens/Authentication/Login/Login.dart';
+import 'package:get/get.dart';
+
+import 'package:owner/service/addshowservice/addshowservice.dart';
+import 'package:owner/service/allbookingdatas/bookingdetails_service.dart';
+import 'package:owner/service/currentowner/currentownerservice.dart';
+import 'package:owner/service/get-shows/getshows.dart';
+import 'package:owner/service/getcurrentscreens/screen_service.dart';
+import 'package:owner/service/movies/movies_service.dart';
+import 'package:owner/service/owners/authentication/login.dart';
+import 'package:owner/view/screens/Home/home.dart';
 import 'package:sizer/sizer.dart';
+
+import 'service/owners/authentication/register.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+final addshowstointernet = Get.put(addshows_service());
+final logdata = Get.put(loginService());
+
+final moviedata = Get.put(get_movies_controller());
+final showadds = Get.to(addshows_service());
+final ownerids = Get.put(get_current_owner());
+final bookingdatas = Get.put(get_booking_details());
+final showdata = Get.put(getshows_service());
+final screemanagedata = Get.put(get_current_screens());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -27,7 +43,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: Scaffold(
-          body: login(),
+          body: Home(),
         ),
         initialBinding: BindingsBuilder(() => Get.put(registerService())),
       );

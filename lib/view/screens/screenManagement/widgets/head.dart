@@ -12,7 +12,7 @@ Widget head() {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(2.h),
           color: bl,
-          border: Border.all(width: 2, color: blu)),
+          border: Border.all(width: 2, color: pp)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

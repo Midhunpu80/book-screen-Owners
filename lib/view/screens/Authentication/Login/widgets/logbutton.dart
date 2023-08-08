@@ -1,11 +1,12 @@
-// ignore_for_file: unnecessary_string_interpolations
+// ignore_for_file: unnecessary_string_interpolations, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:owner/main.dart';
 import 'package:owner/service/currentowner/currentownerservice.dart';
+import 'package:owner/service/get-shows/getshows.dart';
 import 'package:owner/service/getcurrentscreens/screen_service.dart';
 import 'package:owner/view/screens/Authentication/Login/Login.dart';
-import 'package:owner/view/screens/screenManagement/screenmanagement.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -13,22 +14,29 @@ import '../../../../../utils/alltext/alltext.dart';
 import '../../../../../utils/colors/colors.dart';
 
 ////<-------Login Button--------->///
-Widget newlogbutton() {
+Widget newlogbutton({required BuildContext context}) {
   final ownerid = Get.put(get_current_owner());
+
   final screendata = Get.put(get_current_screens());
-  // ignore: unused_local_variable
+  final allofshows = Get.put(getshows_service());
 
   return SizedBox(
     height: 7.h,
     width: 70.w,
     child: ElevatedButton.icon(
       onPressed: () async {
-        Get.to(() => screenMangement());
-        var nas = screendata.getscreens(id: ownerid.reply.data.id);
-        // ignore: avoid_print
-        print("${nas.toString()}");
-
         if (formkey2.currentState!.validate()) {
+          logdata.getowner_Login(
+              email: email2.text, password: pass2.text, context: context);
+
+          // ownerl.getrealowner();
+          // // ignore: avoid_print
+          // print(ownerl.reply.data.id);
+          // allofshows.getshows(id: ownerl.reply.data.id.toString());
+          // Get.to(() => showlist());
+          // var nas = screendata.getscreens(id: ownerid.reply.data.id);
+          // // ignore: avoid_print
+          // print("${nas.toString()}");
         } else {
           // ignore: avoid_print
           print("data");

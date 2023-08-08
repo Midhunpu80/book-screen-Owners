@@ -6,20 +6,21 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:owner/constants/endpoints/endpoint.dart';
 import 'package:owner/constants/token.dart';
-import 'package:owner/models/owner/ownerdetailsmodel/currecntowner.dart';
+import 'package:owner/models/owner/allbook10/allbook10.dart';
 
 dynamic jwt;
 
-class get_current_owner extends GetxController {
+class get_booking_details extends GetxController {
   var isLoading = false.obs;
 
-  late Currentowner10 reply;
+  late Allbook10 reply;
 
-  getrealowner() async {
+  getbooking({required var id}) async {
     try {
       isLoading(true);
       end j = end();
-      final response = await http.get(Uri.parse(j.current_owner_url), headers: {
+      final response =
+          await http.get(Uri.parse("${j.getbooking_url}${id.toString()}"), headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Accept': 'application/json',
         'Authorization': 'Bearer $token'
@@ -27,12 +28,12 @@ class get_current_owner extends GetxController {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
-        reply = Currentowner10.fromJson(data);
+        reply = Allbook10.fromJson(data);
         print(
-            "-<------------------------${reply.data.adhaar.toString()}------------------------->-");
-        isLoading(false);
-        update();
+            "-<------------------------${reply.data.map((e) => e.movieName.toString())}------------------------->-");
 
+        update();
+        isLoading(false);
         return reply;
       } else {
         print("failed");
@@ -47,6 +48,12 @@ class get_current_owner extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getrealowner();
+    getbooking(id: "");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    getbooking(id: "");
   }
 }

@@ -73,7 +73,7 @@ class logorReg extends StatelessWidget {
                 height: 6.h,
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.to(login());
+                      Get.to(login() as Widget Function());
                     },
                     child: alltext(
                         txt: "Login",

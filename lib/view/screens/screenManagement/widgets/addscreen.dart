@@ -25,7 +25,7 @@ class addscreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: gy.withOpacity(0.3),
       appBar: AppBar(
-        backgroundColor: re,
+        backgroundColor: pp,
         centerTitle: true,
         title: alltext2(
             txt: "Add Screen",
@@ -88,7 +88,8 @@ class addscreen extends StatelessWidget {
                                             ownerl.reply.data.id.toString(),
                                         screenno: scree.text.toString(),
                                         rows: rows.text.toString(),
-                                        columns: columns.text.toString(),context: context);
+                                        columns: columns.text.toString(),
+                                        context: context);
                                   },
                                   icon: Icon(
                                     Icons.add,

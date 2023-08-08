@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:owner/constants/endpoints/endpoint.dart';
 import 'package:owner/constants/token.dart';
+import 'package:owner/models/owner/screen10/screen10.dart';
 
 dynamic jwt;
 
@@ -13,14 +14,16 @@ class get_current_screens extends GetxController {
   // final dsa = Get.put(get_current_screens());
   var isLoading = false.obs;
 
-  // late Screen10 reply;
-  final dataList = <dynamic>[].obs;
   var dcp = <dynamic>[].obs;
+
+  late Screen10 reply;
+
+  Screen10 get repy => reply;
 
   var screens = <Map<String, dynamic>>[].obs;
   var nata = {}.obs;
 
-  getscreens({required var id}) async {
+  Future getscreens({required var id}) async {
     try {
       isLoading(true);
       end j = end();
@@ -33,18 +36,20 @@ class get_current_screens extends GetxController {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
-        dataList.value.assignAll(data['data']);
-        print(data['data']);
+        reply = Screen10.fromJson(data);
+
+        // dataList.value.assignAll(data['data']);
+        // print(data['data']);
 
         isLoading(false);
 
         print(">--------------${dcp}---------------->");
 
         print(
-            "-<-------sucess--------------${dataList}---------sucess--------->");
+            "-<-------sucess--------------${reply.data.map((e) => e.columns.toString()).toList().toString()}---------sucess--------->");
         update();
         //}//
-        return dataList.toSet();
+        return reply.data;
       } else {
         print("failed");
         isLoading(false);
@@ -62,4 +67,10 @@ class get_current_screens extends GetxController {
 
     getscreens(id: "");
   }
+
+  // @override
+  // void dispose() {
+  //   getscreens(id: "");
+  //   super.dispose();
+  // }
 }

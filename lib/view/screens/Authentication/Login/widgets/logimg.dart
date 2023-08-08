@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -12,6 +13,6 @@ Widget logimage() {
   return Container(
     height: 38.h,
     width: 150.w,
-    child: Image.asset("images/owl-login-form-replica-from-readme-io_.gif"),
+    child: Lottie.asset("images/owner.json"),
   );
 }
