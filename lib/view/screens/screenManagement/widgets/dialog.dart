@@ -25,7 +25,7 @@ awsome(BuildContext context, var index) {
     btnOkOnPress: () async {
       dele.getdeletescreen(
           ids: screemanagedata.reply.data[index].id.toString(),
-          context: context);
+          context: context,index: index);
     },
   )..show();
 }

@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:owner/utils/alltext/alltext.dart';
 import 'package:owner/utils/colors/colors.dart';
@@ -116,7 +115,7 @@ viewrebookingdetailscard(
                                 siz: 8.sp,
                                 wei: FontWeight.w500,
                                 txt2: total),
-okbutton(),
+                            okbutton(),
                           ],
                         ),
                       )

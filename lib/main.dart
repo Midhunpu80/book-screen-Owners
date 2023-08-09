@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:owner/controller/storage.dart';
 
 import 'package:owner/service/addshowservice/addshowservice.dart';
 import 'package:owner/service/allbookingdatas/bookingdetails_service.dart';
@@ -10,7 +11,7 @@ import 'package:owner/service/get-shows/getshows.dart';
 import 'package:owner/service/getcurrentscreens/screen_service.dart';
 import 'package:owner/service/movies/movies_service.dart';
 import 'package:owner/service/owners/authentication/login.dart';
-import 'package:owner/view/screens/Home/home.dart';
+import 'package:owner/view/screens/Authentication/Login/Login.dart';
 import 'package:sizer/sizer.dart';
 
 import 'service/owners/authentication/register.dart';
@@ -28,6 +29,7 @@ final ownerids = Get.put(get_current_owner());
 final bookingdatas = Get.put(get_booking_details());
 final showdata = Get.put(getshows_service());
 final screemanagedata = Get.put(get_current_screens());
+final localstore = Get.put(localstorage());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: Scaffold(
-          body: Home(),
+          body: login(),
         ),
         initialBinding: BindingsBuilder(() => Get.put(registerService())),
       );

@@ -20,7 +20,7 @@ Widget allshowstitle() {
         height: 10.h,
         width: 100.w,
         decoration:
-            BoxDecoration(borderRadius: BorderRadius.circular(1.h), color:pp),
+            BoxDecoration(borderRadius: BorderRadius.circular(1.h), color: pp),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:owner/constants/endpoints/endpoint.dart';
@@ -17,6 +18,10 @@ class getshows_service extends GetxController {
   Allshows10? reply;
   var dataList = <Allshows10>[].obs;
   Future getshows({required var id, BuildContext? context}) async {
+
+     final st = FlutterSecureStorage();
+
+    var sr = await st.read(key: newtokens);
     // ignore: unused_local_variable
     end e = end();
 
@@ -29,7 +34,7 @@ class getshows_service extends GetxController {
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
             'Accept': 'application/json',
-            'Authorization': 'Bearer $token'
+            'Authorization': 'Bearer $sr'
           });
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);

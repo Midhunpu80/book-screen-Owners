@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 
 import 'package:owner/constants/endpoints/endpoint.dart';
 import 'package:http/http.dart' as http;
+import 'package:owner/constants/token.dart';
+import 'package:owner/controller/storage.dart';
 import 'package:owner/utils/colors/colors.dart';
 
 import 'package:owner/view/screens/Home/home.dart';
@@ -15,11 +17,14 @@ import 'package:owner/view/screens/screenManagement/widgets/dialog.dart';
 import 'package:sizer/sizer.dart';
 
 class loginService extends GetxController {
+  localstorage store = localstorage();
+
   // late Ownersignup10 reply;
 
   var isloading = false.obs;
 
   end e = end();
+
   // ignore: non_constant_identifier_names
   getowner_Login({
     BuildContext? context,
@@ -41,6 +46,10 @@ class loginService extends GetxController {
 
       if (response.statusCode == 200) {
         Map<String, dynamic> reply = jsonDecode(response.body.toString());
+        String tokens = reply["token"];
+        store.setdata(newtokens, tokens);
+
+        ///   print( await store.setdata(newtokens, tokens));
         update();
 
         Navigator.of(context!)
@@ -49,8 +58,8 @@ class loginService extends GetxController {
         Get.snackbar("Logined", "Logined sucess",
             backgroundColor: gr, maxWidth: 20.h, margin: EdgeInsets.all(10.h));
 
-        print(
-            "<--------logined----------------${reply.toString()}-------------logined---------------->");
+        // print(
+        //     "<--------logined----------------${reply.toString()}-------------logined---------------->");
         return reply;
       } else {
         reawsome(

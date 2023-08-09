@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:owner/constants/endpoints/endpoint.dart';
@@ -24,6 +25,9 @@ class addshows_service extends GetxController {
       required var price,
       required BuildContext context,
       required var screen}) async {
+         final st = FlutterSecureStorage();
+
+    var sr = await st.read(key: newtokens);
     final bdy = {
       "owner": {"_id": owner.toString()},
       "screen": screen.toString(),
@@ -40,7 +44,7 @@ class addshows_service extends GetxController {
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
             'Accept': 'application/json',
-            'Authorization': 'Bearer $token'
+            'Authorization': 'Bearer $sr'
           },
           body: jsonEncode(bdy));
 

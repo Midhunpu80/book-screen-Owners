@@ -16,7 +16,10 @@ final showlistdatas = Get.put(getshows_service());
 Widget allshowsList() {
   return Obx(
     () => showdata.isLoading.value
-        ? Center(child: CircularProgressIndicator())
+        ? Padding(
+            padding: EdgeInsets.only(top: 20.h),
+            child: const Center(child: CircularProgressIndicator()),
+          )
         : Padding(
             padding: const EdgeInsets.all(8.0),
             child: Card(
@@ -114,7 +117,6 @@ Widget showviewdetails(
           startdate: startdate,
           enddate: enddate,
           price: price);
-      // viewrebookingdetailscard(context: context, username: "name", movie: "gae", screen: "count", qyt: "try", seats: "level", date:"date", showtime:"effnnf", bookid: "djdjdj", sub: "kkkfk", fees: "dndndn", total:"hhfhfl");
     },
     child: Container(
       height: 4.h,
@@ -131,11 +133,9 @@ Widget showviewdetails(
 Widget moredetails({required BuildContext context, required var index}) {
   return InkWell(
     onTap: () {
-      print("clivk");
-      // addshowstointernet.get_delete_show(
-      //     idt: showdata.reply.data[index].id.toString(), context: context);
+      // print("clivk");
+
       deleteshowlist(context, index);
-      // awsome(context, index)
     },
     child: Container(
       height: 4.h,
@@ -167,54 +167,58 @@ view_showListdetails(
       context: context,
       builder: (context) {
         return AlertDialog(
-          content: SizedBox(
-            height: 50.h,
-            width: 100.w,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                completebookingdetails_down(
-                    txt: "No",
-                    siz: 7.sp,
-                    wei: FontWeight.bold,
-                    txt2: no.toString()),
-                completebookingdetails_down(
-                    txt: "Movie Name",
-                    siz: 7.sp,
-                    wei: FontWeight.bold,
-                    txt2: moviename.toString()),
-                completebookingdetails_down(
-                    txt: "owner Name",
-                    siz: 7.sp,
-                    wei: FontWeight.bold,
-                    txt2: name.toString()),
-                completebookingdetails_down(
-                    txt: "Screen Number",
-                    siz: 7.sp,
-                    wei: FontWeight.bold,
-                    txt2: screennumber.toString()),
-                completebookingdetails_down(
-                    txt: "Show Time",
-                    siz: 7.sp,
-                    wei: FontWeight.bold,
-                    txt2: showtime.toString()),
-                completebookingdetails_down(
-                    txt: "Start Date",
-                    siz: 7.sp,
-                    wei: FontWeight.bold,
-                    txt2: startdate.toString().substring(0, 11)),
-                completebookingdetails_down(
-                    txt: "End Date",
-                    siz: 7.sp,
-                    wei: FontWeight.bold,
-                    txt2: enddate.toString().substring(0, 11)),
-                completebookingdetails_down(
-                    txt: "Price",
-                    siz: 7.sp,
-                    wei: FontWeight.bold,
-                    txt2: price.toString()),
-                okbutton(),
-              ],
+          content: Card(
+            elevation: 0,
+            shadowColor: gr,
+            child: SizedBox(
+              height: 50.h,
+              width: 100.w,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  completebookingdetails_down(
+                      txt: "No",
+                      siz: 7.sp,
+                      wei: FontWeight.bold,
+                      txt2: no.toString()),
+                  completebookingdetails_down(
+                      txt: "Movie Name",
+                      siz: 7.sp,
+                      wei: FontWeight.bold,
+                      txt2: moviename.toString()),
+                  completebookingdetails_down(
+                      txt: "owner Name",
+                      siz: 7.sp,
+                      wei: FontWeight.bold,
+                      txt2: name.toString()),
+                  completebookingdetails_down(
+                      txt: "Screen Number",
+                      siz: 7.sp,
+                      wei: FontWeight.bold,
+                      txt2: screennumber.toString()),
+                  completebookingdetails_down(
+                      txt: "Show Time",
+                      siz: 7.sp,
+                      wei: FontWeight.bold,
+                      txt2: showtime.toString()),
+                  completebookingdetails_down(
+                      txt: "Start Date",
+                      siz: 7.sp,
+                      wei: FontWeight.bold,
+                      txt2: startdate.toString().substring(0, 11)),
+                  completebookingdetails_down(
+                      txt: "End Date",
+                      siz: 7.sp,
+                      wei: FontWeight.bold,
+                      txt2: enddate.toString().substring(0, 11)),
+                  completebookingdetails_down(
+                      txt: "Price",
+                      siz: 7.sp,
+                      wei: FontWeight.bold,
+                      txt2: price.toString()),
+                  okbutton(),
+                ],
+              ),
             ),
           ),
         );

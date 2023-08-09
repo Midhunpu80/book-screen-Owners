@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:owner/constants/token.dart';
 import 'package:owner/utils/alltext/alltext.dart';
 import 'package:owner/utils/colors/colors.dart';
 import 'package:owner/view/screens/Home/widgets/drawer.dart';
@@ -10,6 +11,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../main.dart';
 
+// ignore: use_key_in_widget_constructors
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -33,10 +35,12 @@ class Home extends StatelessWidget {
               size: 4.h,
             ),
             onPressed: () async {
-             ownerids.getrealowner();
+              await st.read(key: newtokens);
+              print("+++++++++++++++++++${await st.read(key: newtokens)}++++++++++++");
+              ownerids.getrealowner();
               Scaffold.of(context).openDrawer();
               bookingdatas.getbooking(id: ownerids.reply.data.id.toString());
-             screemanagedata.getscreens(id: ownerids.reply.data.id);
+              screemanagedata.getscreens(id: ownerids.reply.data.id);
               showdata.getshows(id: ownerids.reply.data.id);
             },
             tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,

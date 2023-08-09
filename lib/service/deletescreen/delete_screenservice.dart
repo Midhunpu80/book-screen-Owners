@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:owner/constants/endpoints/endpoint.dart';
@@ -15,7 +16,10 @@ dynamic jwt;
 class get_Delete_screen extends GetxController {
   var isLoading = false.obs;
 
-  getdeletescreen({required var ids, BuildContext? context}) async {
+  getdeletescreen({required var ids, BuildContext? context, var index}) async {
+    final st = FlutterSecureStorage();
+
+    var sr = await st.read(key: newtokens);
     final bdy = {"screenId": ids};
     try {
       end j = end();
@@ -23,17 +27,18 @@ class get_Delete_screen extends GetxController {
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
             'Accept': 'application/json',
-            'Authorization': 'Bearer $token'
+            'Authorization': 'Bearer $sr'
           },
           body: jsonEncode(bdy));
 
       if (response.statusCode == 200) {
-        var reply = jsonDecode(response.body);
+        List reply = jsonDecode(response.body.toString());
         reawsome(
             Type: DialogType.SUCCES,
             context: context!,
             txt: "sucess",
             des: "sucessfuly deleted");
+        //  reply.removeAt(index);
 
         print(
             "-<---------delted---------------${reply.toString()}------------delted------------->-");
@@ -54,7 +59,9 @@ class get_Delete_screen extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getdeletescreen(ids: "");
+    getdeletescreen(
+      ids: "",
+    );
   }
 
   @override

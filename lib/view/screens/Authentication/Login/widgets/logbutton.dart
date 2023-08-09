@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:owner/constants/token.dart';
+import 'package:owner/controller/storage.dart';
 import 'package:owner/main.dart';
 import 'package:owner/service/currentowner/currentownerservice.dart';
 import 'package:owner/service/get-shows/getshows.dart';
@@ -19,6 +21,7 @@ Widget newlogbutton({required BuildContext context}) {
 
   final screendata = Get.put(get_current_screens());
   final allofshows = Get.put(getshows_service());
+  localstorage store = localstorage();
 
   return SizedBox(
     height: 7.h,
@@ -28,6 +31,10 @@ Widget newlogbutton({required BuildContext context}) {
         if (formkey2.currentState!.validate()) {
           logdata.getowner_Login(
               email: email2.text, password: pass2.text, context: context);
+
+         await store.getdata(newtokens);
+          print("--read sata --${ await store.getdata(newtokens.toString())}---readdata--");
+          // localstore.getdata();
 
           // ownerl.getrealowner();
           // // ignore: avoid_print

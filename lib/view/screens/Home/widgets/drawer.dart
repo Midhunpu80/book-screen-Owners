@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:owner/constants/routes/routes.dart';
 import 'package:owner/main.dart';
 import 'package:owner/utils/alltext/alltext.dart';
 import 'package:owner/utils/colors/colors.dart';
+import 'package:owner/view/screens/profile/profile.dart';
 import 'package:sizer/sizer.dart';
+ final st = FlutterSecureStorage();
 
 Widget drawerdata() {
   List<String> ownerpagetitle = [
@@ -31,10 +34,23 @@ Widget drawerdata() {
         SizedBox(
           height: 3.h,
         ),
+
+        /////////////////////owner profile section ///////////////////////////////////
         CircleAvatar(
           backgroundColor: pp,
           radius: 10.h,
+          child: IconButton(
+              onPressed: () {
+                
+                Get.to(() => profilescreen());
+              },
+              icon: Icon(
+                Icons.person,
+                color: wh,
+                size: 15.h,
+              )),
         ),
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         SizedBox(
           height: 2.h,
         ),
@@ -55,7 +71,7 @@ Widget drawerdata() {
                     splashColor: pp,
                     hoverColor: gr,
                     onTap: () {
-                  ///  ownerids.getrealowner();
+                      ///  ownerids.getrealowner();
 
                       //////////////////////passing the all screens id s///////////////////////////////////////
                       ///

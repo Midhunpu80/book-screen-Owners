@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:owner/constants/endpoints/endpoint.dart';
@@ -8,9 +9,13 @@ import 'package:owner/models/owner/movies/movies10.dart';
 
 // ignore: camel_case_types
 class get_movies_controller extends GetxController {
+
   var isLoading = false.obs;
   late Movies10 reply;
   getmovies() async {
+     final st = FlutterSecureStorage();
+
+    var sr = await st.read(key: newtokens);
     end e = end();
     try {
       isLoading.value = true;
@@ -20,7 +25,7 @@ class get_movies_controller extends GetxController {
         // ignore: unnecessary_brace_in_string_interps
         headers: {
           // ignore: unnecessary_brace_in_string_interps
-          'Authorization': 'Bearer ${token}',
+          'Authorization': 'Bearer ${sr}',
           'Content-Type': 'application/json;charset=utf-8',
           'Accept': 'application/json',
           'Accept-Encoding': 'gzip, deflate'

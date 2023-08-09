@@ -2,16 +2,22 @@
 
 import 'dart:convert';
 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:owner/constants/endpoints/endpoint.dart';
 import 'package:owner/constants/token.dart';
+import 'package:owner/controller/storage.dart';
 import 'package:owner/models/owner/screen10/screen10.dart';
+import 'package:owner/service/owners/authentication/login.dart';
 
 dynamic jwt;
 
 class get_current_screens extends GetxController {
   // final dsa = Get.put(get_current_screens());
+
+  final logserv = Get.put(loginService());
+
   var isLoading = false.obs;
 
   var dcp = <dynamic>[].obs;
@@ -24,6 +30,11 @@ class get_current_screens extends GetxController {
   var nata = {}.obs;
 
   Future getscreens({required var id}) async {
+    localstorage store = localstorage();
+    final st = FlutterSecureStorage();
+
+    var sr = await st.read(key: newtokens);
+
     try {
       isLoading(true);
       end j = end();
@@ -31,7 +42,7 @@ class get_current_screens extends GetxController {
           await http.get(Uri.parse("${j.screen_url}${id}"), headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Accept': 'application/json',
-        'Authorization': 'Bearer $token'
+        'Authorization': 'Bearer ${sr}'
       });
 
       if (response.statusCode == 200) {
@@ -67,10 +78,4 @@ class get_current_screens extends GetxController {
 
     getscreens(id: "");
   }
-
-  // @override
-  // void dispose() {
-  //   getscreens(id: "");
-  //   super.dispose();
-  // }
 }

@@ -46,7 +46,7 @@ class screenMangement extends StatelessWidget {
         body: Obx(
           () => screemanagedata.isLoading.value || ownerids.isLoading.value
               ? Padding(
-                  padding: EdgeInsets.only(top: 40.h),
+                  padding: EdgeInsets.only(top: 5.h),
                   child: const Center(child: CircularProgressIndicator()),
                 )
               : SingleChildScrollView(

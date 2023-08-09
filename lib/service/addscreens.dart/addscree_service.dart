@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 
 import 'package:owner/constants/endpoints/endpoint.dart';
@@ -25,6 +26,10 @@ class screen_add_Service extends GetxController {
       required String rows,
       required String columns,
       BuildContext? context}) async {
+    // ignore: prefer_const_constructors
+    final st = FlutterSecureStorage();
+
+    var sr = await st.read(key: newtokens);
     final bdy = {
       "owner": {"_id": ownerid},
       "screen": screenno,
@@ -37,7 +42,7 @@ class screen_add_Service extends GetxController {
           headers: {
             'Content-Type': 'application/json;charset=utf-8',
             'Accept': 'application/json',
-            'Authorization': 'Bearer $token'
+            'Authorization': 'Bearer $sr'
           },
           body: jsonEncode(bdy),
           encoding: Encoding.getByName('utf-8'));
