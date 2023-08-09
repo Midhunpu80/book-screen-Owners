@@ -32,18 +32,13 @@ Widget newlogbutton({required BuildContext context}) {
           logdata.getowner_Login(
               email: email2.text, password: pass2.text, context: context);
 
-         await store.getdata(newtokens);
-          print("--read sata --${ await store.getdata(newtokens.toString())}---readdata--");
-          // localstore.getdata();
+          await store.getdata(newtokens);
+          await store.getdata(loacalemail);
+          await store.getdata(loacalpass);
 
-          // ownerl.getrealowner();
-          // // ignore: avoid_print
-          // print(ownerl.reply.data.id);
-          // allofshows.getshows(id: ownerl.reply.data.id.toString());
-          // Get.to(() => showlist());
-          // var nas = screendata.getscreens(id: ownerid.reply.data.id);
-          // // ignore: avoid_print
-          // print("${nas.toString()}");
+          // ignore: avoid_print
+          print(
+              "--read sata --${await store.getdata(newtokens.toString())}---readdata--");
         } else {
           // ignore: avoid_print
           print("data");

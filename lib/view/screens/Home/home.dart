@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:owner/constants/token.dart';
@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: drawerdata(),
+        child: drawerdata(context: context),
       ),
       appBar: AppBar(
         centerTitle: true,
@@ -36,6 +36,7 @@ class Home extends StatelessWidget {
             ),
             onPressed: () async {
               await st.read(key: newtokens);
+              // ignore: avoid_print
               print("+++++++++++++++++++${await st.read(key: newtokens)}++++++++++++");
               ownerids.getrealowner();
               Scaffold.of(context).openDrawer();

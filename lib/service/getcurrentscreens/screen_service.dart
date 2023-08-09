@@ -31,6 +31,7 @@ class get_current_screens extends GetxController {
 
   Future getscreens({required var id}) async {
     localstorage store = localstorage();
+    // ignore: prefer_const_constructors
     final st = FlutterSecureStorage();
 
     var sr = await st.read(key: newtokens);
@@ -48,9 +49,6 @@ class get_current_screens extends GetxController {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         reply = Screen10.fromJson(data);
-
-        // dataList.value.assignAll(data['data']);
-        // print(data['data']);
 
         isLoading(false);
 

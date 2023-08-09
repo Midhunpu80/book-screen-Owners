@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -6,10 +9,12 @@ import 'package:owner/main.dart';
 import 'package:owner/utils/alltext/alltext.dart';
 import 'package:owner/utils/colors/colors.dart';
 import 'package:owner/view/screens/profile/profile.dart';
+import 'package:owner/view/screens/screenManagement/widgets/dialog.dart';
 import 'package:sizer/sizer.dart';
- final st = FlutterSecureStorage();
 
-Widget drawerdata() {
+final st = FlutterSecureStorage();
+
+Widget drawerdata({required BuildContext context}) {
   List<String> ownerpagetitle = [
     "Screen Management",
     "showList",
@@ -38,16 +43,15 @@ Widget drawerdata() {
         /////////////////////owner profile section ///////////////////////////////////
         CircleAvatar(
           backgroundColor: pp,
-          radius: 10.h,
+          radius: 8.h,
           child: IconButton(
               onPressed: () {
-                
                 Get.to(() => profilescreen());
               },
               icon: Icon(
                 Icons.person,
                 color: wh,
-                size: 15.h,
+                size: 13.h,
               )),
         ),
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -59,13 +63,16 @@ Widget drawerdata() {
           color: gy,
         ),
         Container(
-          height: 70.h,
+          height: 40.h,
           width: 100.w,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(1.h)),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(1.h),
+          ),
           child: ListView.separated(
               itemBuilder: (context, index) {
                 // ignore: sized_box_for_whitespace
                 return Container(
+                  // color: blu,
                   height: 5.h,
                   child: ListTile(
                     splashColor: pp,
@@ -80,6 +87,11 @@ Widget drawerdata() {
                       screemanagedata.getscreens(id: ownerids.reply.data.id);
                       showdata.getshows(id: ownerids.reply.data.id);
                     },
+                    leading: Icon(
+                      Icons.apple_rounded,
+                      color: bl,
+                      size: 3.h,
+                    ),
                     ////////////////////////////////////////////////////////////////////////////
                     title: alltext(
                         txt: ownerpagetitle[index].toString(),
@@ -104,7 +116,6 @@ Widget drawerdata() {
                 );
               },
               separatorBuilder: (context, index) {
-                // ignore: prefer_const_constructors
                 return SizedBox(
                   height: 4.h,
                 );
@@ -113,8 +124,35 @@ Widget drawerdata() {
         ),
         Divider(
           thickness: 2,
-          color: gr,
+          color: gy,
         ),
+        SizedBox(
+          height: 10.h,
+        ),
+
+        SizedBox(
+          height: 5.h,
+          width: 70.w,
+          child: ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(backgroundColor: pp),
+              onPressed: () {
+                Logoutreawsome(
+                    context: context,
+                    txt: "Logout",
+                    des: "Are you Sure to Logout your account ?",
+                    Type: DialogType.QUESTION);
+              },
+              icon: Icon(
+                Icons.logout,
+                color: wh,
+              ),
+              label: alltext(
+                  txt: "Logout",
+                  col: wh,
+                  siz: 12.sp,
+                  wei: FontWeight.bold,
+                  max: 1)),
+        )
       ],
     ),
   );

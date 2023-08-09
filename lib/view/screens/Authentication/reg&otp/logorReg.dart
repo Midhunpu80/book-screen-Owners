@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -73,7 +75,7 @@ class logorReg extends StatelessWidget {
                 height: 6.h,
                 child: ElevatedButton(
                     onPressed: () {
-                      Get.to(login() as Widget Function());
+                      Get.to(() => login());
                     },
                     child: alltext(
                         txt: "Login",
@@ -88,7 +90,7 @@ class logorReg extends StatelessWidget {
             alltext(
                 txt: "Alredy have an account ? Signup",
                 col: wh,
-                siz: 11.sp,
+                siz: 10.sp,
                 wei: FontWeight.bold,
                 max: 1)
           ],

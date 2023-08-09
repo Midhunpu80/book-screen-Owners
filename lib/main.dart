@@ -11,7 +11,7 @@ import 'package:owner/service/get-shows/getshows.dart';
 import 'package:owner/service/getcurrentscreens/screen_service.dart';
 import 'package:owner/service/movies/movies_service.dart';
 import 'package:owner/service/owners/authentication/login.dart';
-import 'package:owner/view/screens/Authentication/Login/Login.dart';
+import 'package:owner/splashscreen/splashscreen.dart';
 import 'package:sizer/sizer.dart';
 
 import 'service/owners/authentication/register.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: Scaffold(
-          body: login(),
+          body: SplashScreen(),
         ),
         initialBinding: BindingsBuilder(() => Get.put(registerService())),
       );

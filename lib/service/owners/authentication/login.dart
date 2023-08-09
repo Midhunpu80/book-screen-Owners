@@ -11,9 +11,11 @@ import 'package:http/http.dart' as http;
 import 'package:owner/constants/token.dart';
 import 'package:owner/controller/storage.dart';
 import 'package:owner/utils/colors/colors.dart';
+import 'package:owner/view/screens/Authentication/ownerRegister/ownerreg.dart';
 
 import 'package:owner/view/screens/Home/home.dart';
 import 'package:owner/view/screens/screenManagement/widgets/dialog.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 class loginService extends GetxController {
@@ -46,8 +48,18 @@ class loginService extends GetxController {
 
       if (response.statusCode == 200) {
         Map<String, dynamic> reply = jsonDecode(response.body.toString());
+        print(reply.toString());
         String tokens = reply["token"];
         store.setdata(newtokens, tokens);
+        store.setdata(loacalemail, email.toString());
+        store.setdata(loacalpass, password.toString());
+
+        // if (reply['logIn'] == true) {
+        final share = await SharedPreferences.getInstance();
+        await share.setBool("login", true);
+
+        update();
+        //  }
 
         ///   print( await store.setdata(newtokens, tokens));
         update();
