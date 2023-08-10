@@ -17,14 +17,15 @@ class get_booking_details extends GetxController {
   late Allbook10 reply;
 
   getbooking({required var id}) async {
-     final st = FlutterSecureStorage();
+    // ignore: prefer_const_constructors
+    final st = FlutterSecureStorage();
 
     var sr = await st.read(key: newtokens);
     try {
       isLoading(true);
       end j = end();
-      final response =
-          await http.get(Uri.parse("${j.getbooking_url}${id.toString()}"), headers: {
+      final response = await http
+          .get(Uri.parse("${j.getbooking_url}${id.toString()}"), headers: {
         'Content-Type': 'application/json;charset=utf-8',
         'Accept': 'application/json',
         'Authorization': 'Bearer $sr'
@@ -46,6 +47,8 @@ class get_booking_details extends GetxController {
       }
     } catch (e) {
       throw Exception("Failed$e");
+    } finally {
+      isLoading(false);
     }
   }
 

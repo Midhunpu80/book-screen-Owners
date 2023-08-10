@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print, deprecated_member_use, constant_pattern_never_matches_value_type, camel_case_types, unused_local_variable
-
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -11,6 +9,7 @@ import 'package:owner/models/owner/ownerdetailsmodel/currecntowner.dart';
 
 dynamic jwt;
 
+// ignore: camel_case_types
 class get_current_owner extends GetxController {
   var isLoading = false.obs;
   var dataList = <Currentowner10>[].obs;
@@ -35,7 +34,7 @@ class get_current_owner extends GetxController {
         var data = jsonDecode(response.body);
         reply = Currentowner10.fromJson(data);
 
-        dataList.value.add(reply);
+        /// dataList.value.add(reply);
 
         print(
             "<----------1233-----------------------${dataList}-----------123-------------->");
@@ -54,6 +53,8 @@ class get_current_owner extends GetxController {
       }
     } catch (e) {
       throw Exception("Failed$e");
+    } finally {
+      isLoading(false);
     }
   }
 

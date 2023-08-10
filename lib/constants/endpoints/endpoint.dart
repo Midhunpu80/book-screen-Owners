@@ -15,4 +15,8 @@ class end {
   String getshowsurl = "${ownerurl}get-shows/";
   String getbooking_url = "${ownerurl}get-bookings/";
   String deleteshow_url = "${ownerurl}delete-show";
+  String mothly_sail_url = "${ownerurl}get-monthySails";
+  String getsatus_url = "${ownerurl}get-status";
+  String daily_sail_url = "${ownerurl}get-dailySails";
+  
 }

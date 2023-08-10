@@ -1,5 +1,6 @@
 //
 import 'package:flutter/material.dart';
+import 'package:owner/main.dart';
 import 'package:owner/utils/alltext/alltext.dart';
 import 'package:owner/utils/colors/colors.dart';
 import 'package:owner/view/screens/Home/widgets/piechart.dart';
@@ -20,38 +21,41 @@ Widget sailstime() {
     flexibleSpace: Padding(
       padding: const EdgeInsets.all(5.0),
       child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              dailysail(re, "Daily sail", "56445"),
-              dailysail(blu, "Monthly sail", "4555"),
-              dailysail(gr, 'Yearly sail', "555"),
-            ],
-          ),
-          SizedBox(
-            height: 3.h,
-          ),
-          Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 3.h,
-                  child: alltext(
-                      txt: "Latest Booking Status",
-                      col: bl,
-                      siz: 13.sp,
-                      wei: FontWeight.bold,
-                      max: 1),
-                ),
-              )),
-          SizedBox(
-            height: 2.h,
-          ),
-          piecha(),
-        ],
-      ),
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      dailysail(re, "Daily sail", "56445"),
+                      dailysail(blu, "Monthly saiL",
+                          monthsail.reply.data.userCount[6].toString()),
+                      dailysail(gr, 'Yearly saiL',
+                          monthsail.reply.data.years.toString()),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 3.h,
+                  ),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          height: 3.h,
+                          child: alltext(
+                              txt: "Latest Booking Status",
+                              col: bl,
+                              siz: 13.sp,
+                              wei: FontWeight.bold,
+                              max: 1),
+                        ),
+                      )),
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  piecha(),
+                ],
+              ),
+      
     ),
   );
 }

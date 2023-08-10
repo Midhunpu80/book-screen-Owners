@@ -9,11 +9,10 @@ import 'package:owner/models/owner/movies/movies10.dart';
 
 // ignore: camel_case_types
 class get_movies_controller extends GetxController {
-
   var isLoading = false.obs;
   late Movies10 reply;
   getmovies() async {
-     final st = FlutterSecureStorage();
+    final st = FlutterSecureStorage();
 
     var sr = await st.read(key: newtokens);
     end e = end();
@@ -48,6 +47,8 @@ class get_movies_controller extends GetxController {
       }
     } catch (e) {
       throw ("movies fetching failed$e");
+    } finally {
+      isLoading(false);
     }
   }
 

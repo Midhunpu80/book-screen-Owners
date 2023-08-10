@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:owner/main.dart';
 import 'package:owner/utils/alltext/alltext.dart';
 import 'package:owner/utils/colors/colors.dart';
 import 'package:sizer/sizer.dart';
 
-// List datas = [
-//   month.reply.data[4].toString(),
-//   sail.reply?.data.userCount.toString(),
-//   sail.reply?.data.ownerCount.toString(),
-//   sail.reply?.data.movieCount.toString(),
-//   sail.reply?.data.activeCount.toString(),
-//   sail.reply?.data.expiredCount.toString()
-// ];
+
+List alldailydatas = [
+  monthsail.reply3.data.total.toString(),
+  monthsail.reply3.data.expiredCount.toString(),
+  monthsail.reply3.data.screenCount.toString(),
+  monthsail.reply3.data.showCount.toString(),
+  monthsail.reply3.data.orderCount.toString(),
+  monthsail.reply3.data.expiredCount.toString()
+];
 
 Widget revenusatus() {
   return SliverGrid.builder(
@@ -38,7 +40,7 @@ Widget revenusatus() {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10.h),
-                    child: dashvalue(values: "1222"),
+                    child: dashvalue(values: alldailydatas[index].toString()),
                   ),
                 ],
               )

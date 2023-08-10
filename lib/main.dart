@@ -7,6 +7,7 @@ import 'package:owner/controller/storage.dart';
 import 'package:owner/service/addshowservice/addshowservice.dart';
 import 'package:owner/service/allbookingdatas/bookingdetails_service.dart';
 import 'package:owner/service/currentowner/currentownerservice.dart';
+import 'package:owner/service/dashboard/allsailservice.dart';
 import 'package:owner/service/get-shows/getshows.dart';
 import 'package:owner/service/getcurrentscreens/screen_service.dart';
 import 'package:owner/service/movies/movies_service.dart';
@@ -19,6 +20,8 @@ import 'service/owners/authentication/register.dart';
 void main() {
   runApp(const MyApp());
 }
+
+final monthsail = Get.put(get_monthyly_sails());
 
 final addshowstointernet = Get.put(addshows_service());
 final logdata = Get.put(loginService());

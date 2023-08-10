@@ -39,13 +39,13 @@ class registerService extends GetxController {
     required String password,
   }) async {
     final Map<String, dynamic> bdy = {
-      "Name": thetername,
-      "Email": email,
-      "Adhaar": idproof,
-      "Licence": licence,
-      "Location": location,
-      "Phone": phone,
-      "Password": password,
+      "Name": thetername.toString(),
+      "Email": email.toString(),
+      "Adhaar": idproof.toString(),
+      "Licence": licence.toString(),
+      "Location": location.toString(),
+      "Phone": phone.toString(),
+      "Password": password.toString(),
     };
     try {
       final response = await http.post(
@@ -63,7 +63,7 @@ class registerService extends GetxController {
 
         // ignore: avoid_print
         print(
-            "<------------------------${reply.toString()}----------------------------->");
+            "<------singup------------------${reply.toString()}------------signup----------------->");
       } else {
         update();
         throw ("singup is failed");

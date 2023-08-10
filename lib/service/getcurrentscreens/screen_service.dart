@@ -66,6 +66,8 @@ class get_current_screens extends GetxController {
       }
     } catch (e) {
       throw Exception("Failed$e");
+    } finally {
+      isLoading(false);
     }
   }
 

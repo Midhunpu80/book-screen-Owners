@@ -15,11 +15,10 @@ import 'package:owner/view/screens/screenManagement/widgets/dialog.dart';
 class getshows_service extends GetxController {
   var isLoading = false.obs;
 
-  Allshows10? reply;
+ late Allshows10 reply;
   var dataList = <Allshows10>[].obs;
   Future getshows({required var id, BuildContext? context}) async {
-
-     final st = FlutterSecureStorage();
+    final st = FlutterSecureStorage();
 
     var sr = await st.read(key: newtokens);
     // ignore: unused_local_variable
@@ -65,11 +64,13 @@ class getshows_service extends GetxController {
         return reply;
       } else {
         isLoading.value = false;
-        
+
         throw ("is failed fetching the data");
       }
     } catch (e) {
       throw ("is failed fetching the data$e");
+    } finally {
+      isLoading(false);
     }
   }
 

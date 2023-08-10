@@ -13,6 +13,12 @@ import 'package:owner/view/screens/screenManagement/widgets/dialog.dart';
 import 'package:sizer/sizer.dart';
 
 final st = FlutterSecureStorage();
+List<IconData> drawerlisticons = [
+  Icons.tv_outlined,
+  Icons.list,
+  Icons.book,
+  Icons.chat,
+];
 
 Widget drawerdata({required BuildContext context}) {
   List<String> ownerpagetitle = [
@@ -77,18 +83,19 @@ Widget drawerdata({required BuildContext context}) {
                   child: ListTile(
                     splashColor: pp,
                     hoverColor: gr,
-                    onTap: () {
-                      ///  ownerids.getrealowner();
-
+                    onTap: () async {
                       //////////////////////passing the all screens id s///////////////////////////////////////
                       ///
                       Get.to(routes[index]);
-                      bookingdatas.getbooking(id: ownerids.reply.data.id);
-                      screemanagedata.getscreens(id: ownerids.reply.data.id);
-                      showdata.getshows(id: ownerids.reply.data.id);
+                      await ownerids.getrealowner();
+
+                      await bookingdatas.getbooking(id: ownerids.reply.data.id);
+                      await screemanagedata.getscreens(
+                          id: ownerids.reply.data.id);
+                      await showdata.getshows(id: ownerids.reply.data.id);
                     },
                     leading: Icon(
-                      Icons.apple_rounded,
+                      drawerlisticons[index],
                       color: bl,
                       size: 3.h,
                     ),

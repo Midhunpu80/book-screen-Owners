@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:owner/main.dart';
+
 import 'package:owner/utils/colors/colors.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:sizer/sizer.dart';
@@ -17,8 +19,8 @@ Widget piecha() {
           ringStrokeWidth: 2.h,
           // ignore: prefer_const_literals_to_create_immutables
           dataMap: {
-            "Booked": 110,
-            "cancelled": 120,
+            "Booked": monthsail.reply2.data[0].toDouble(),
+            "cancelled": monthsail.reply2.data[1].toDouble(),
           },
           chartType: ChartType.ring,
           colorList: [gr, re],
